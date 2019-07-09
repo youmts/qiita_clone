@@ -40,10 +40,14 @@
           %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
           %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
 
-    %p.notice
-      = notice
-    %p.alert
-      = alert
-
     .container
+      - if notice.present?
+        .alert.alert-primary
+          %p.notice
+            = notice
+      - if alert.present?
+        .alert.alert-danger
+          %p.alert
+            = alert
+
       = yield
