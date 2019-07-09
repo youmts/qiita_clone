@@ -14,10 +14,16 @@
         %span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
         %ul.navbar-nav.mr-auto
-          %li.nav-item.active
+          %li.nav-item
             %a.nav-link{:href => "#"}
               ユーザ一覧
               %span.sr-only (current)
+          %li.nav-item
+            - if user_signed_in?
+              = link_to "ログアウト", destroy_user_session_url, method: :delete, class: "nav-link"
+            - else
+              %a.nav-link{:href => new_user_session_url}
+                ログイン
           %li.nav-item
             %a.nav-link{:href => "#"} Link
           %li.nav-item.dropdown
@@ -39,4 +45,5 @@
     %p.alert
       = alert
 
-    = yield
+    .container
+      = yield
