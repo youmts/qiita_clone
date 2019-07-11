@@ -1,3 +1,22 @@
 %h1
   = @user.name
 
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th
+      %th
+      %th
+
+  %tbody
+    - @user.articles.each do |article|
+      %tr
+        %td= article.title
+        %td= link_to 'Show', [@user, article]
+        %td= link_to 'Edit', edit_user_article_path(@user, article)
+        %td= link_to 'Destroy', [@user, article], method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Article', new_user_article_url(@user)
