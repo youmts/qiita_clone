@@ -18,4 +18,20 @@ RSpec.describe "Users", :type => :system do
     expect(page).to have_current_path root_path
     expect(page).to have_content "アカウント登録が完了しました"
   end
+
+  context "ユーザ登録済みのとき" do
+    before do
+      @user = create(:user, password: "password", password_confirmation: "password")
+    end
+
+    it "ログインできること" do
+      visit new_user_session_path
+      fill_in "メールアドレス", with: @user.email
+      fill_in "パスワード", with: @user.password
+
+      click_button "ログイン"
+
+      expect(page).to have_content "ログインしました"
+    end
+  end
 end
