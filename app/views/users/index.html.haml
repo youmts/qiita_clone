@@ -1,2 +1,16 @@
-%h1 Users#index
-%p Find me in app/views/users/index.html.haml
+%h1 ユーザ一覧
+
+%table.table
+  %thead
+    %tr
+      %th
+        名前
+      %th
+        メールアドレス
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td
+          = link_to user.name, user
+        %td
+          = link_to user.email, user
