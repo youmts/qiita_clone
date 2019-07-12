@@ -6,14 +6,14 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new
+    @article = @user.articles.build
   end
 
   def edit
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = @user.articles.build(article_params)
 
     respond_to do |format|
       if @article.save
