@@ -18,14 +18,15 @@
             %a.nav-link{:href => users_url}
               ユーザ一覧
               %span.sr-only (current)
+          - if user_signed_in?
+            %li.nav-item
+              = link_to "自分の記事", articles_path, class: "nav-link"
           %li.nav-item
             - if user_signed_in?
               = link_to "ログアウト", destroy_user_session_url, method: :delete, class: "nav-link"
             - else
               %a.nav-link{:href => new_user_session_url}
                 ログイン
-          %li.nav-item
-            %a.nav-link{:href => "#"} Link
           %li.nav-item.dropdown
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               Dropdown
