@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'home/index'
+  get 'home/search'
   root to: 'home#index'
 
   resources :users, only: [:index, :show] do

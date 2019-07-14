@@ -31,9 +31,9 @@
           - else
             %a.nav-link{:href => new_user_session_path}
               ログイン
-        %form.form-inline.my-2.my-lg-0
-          %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
-          %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
+        = form_tag home_search_path, :method => 'get', class: "form-inline my-2 my-lg-0" do
+          = text_field_tag :text, nil, placeholder: "ここに入力", type: "search", class: "form-control mr-sm-2", "aria-label" => "Search"
+          = submit_tag "検索", class: "btn btn-outline-success my-2 my-sm-0"
 
     .container
       - if notice.present?
