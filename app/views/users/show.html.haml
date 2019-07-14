@@ -1,8 +1,4 @@
 %h1
   = @user.name
 
-%table.table
-  %tbody
-    - @user.articles.each do |article|
-      %tr
-        %td= link_to article.title, [@user, article]
+= render 'articles/index', articles: @user.articles
