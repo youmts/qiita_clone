@@ -1,9 +1,11 @@
 class HomeController < ApplicationController
+  include Pagy::Backend
+
   def index
-    @articles = Article.top(10)
+    @pagy, @articles = pagy(Article.top)
   end
 
   def search
-    @articles = Article.search(params[:text]).top(10)
+    @pagy, @articles = pagy(Article.search(params[:text]).top)
   end
 end

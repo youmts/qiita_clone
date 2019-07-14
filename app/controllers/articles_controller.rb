@@ -1,9 +1,11 @@
 class ArticlesController < ApplicationController
+  include Pagy::Backend
+
   before_action :authenticate_user!
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
-    @articles = current_user.articles
+    @pagy, @articles = pagy(current_user.articles.top)
   end
 
   def show
