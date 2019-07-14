@@ -11,6 +11,10 @@
       = f.email_field :email, autocomplete: "email", class: "form-control"
   .field
     .form-group
+      = f.label :tag_list
+      = text_field_tag 'user[tag_list]', resource.tag_list.join(','), class: "form-control"
+  .field
+    .form-group
       = f.label :password
       - if @minimum_password_length
         %em

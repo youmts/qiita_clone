@@ -1,4 +1,9 @@
 %h1
   = @user.name
 
+%p
+  - @user.tag_list.each do |tag|
+    %span.badge.badge-primary
+      = tag
+
 = render 'articles/index', articles: @user.articles

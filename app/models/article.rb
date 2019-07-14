@@ -3,6 +3,7 @@ class Article < ApplicationRecord
   validates :body, presence: true
   
   belongs_to :user
+  acts_as_taggable
 
   default_scope { includes(:user) }
 
