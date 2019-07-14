@@ -4,6 +4,8 @@ class Article < ApplicationRecord
   
   belongs_to :user
 
+  default_scope { includes(:user) }
+
   scope :top, -> (count) { order(updated_at: :desc).limit(count) }
   scope :search, -> (text) {
     where("title like '%'||?||'%' or body like '%'||?||'%'", text, text)
