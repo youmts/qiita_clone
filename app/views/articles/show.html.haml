@@ -1,18 +1,3 @@
-%h1
-  = @article.title
-
-.row
-  .col-sm-8= @article.user.name
-  .col-sm-2<
-    = distance_of_time_in_words_to_now(@article.created_at)
-    前に作成
-  .col-sm-2<
-    = distance_of_time_in_words_to_now(@article.updated_at)
-    前に更新
-
-.border.rounded
-  %p
-    = simple_format(h(@article.body))
-
+= render 'show'
 
 = link_to 'Edit', edit_article_path(@article)
