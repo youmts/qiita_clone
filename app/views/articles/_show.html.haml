@@ -13,3 +13,6 @@
 .border.rounded
   %p
     = simple_format(h(@article.body))
+
+- if current_user == @article.user
+  = link_to 'Edit', edit_article_path(@article)
