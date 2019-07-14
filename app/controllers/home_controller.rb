@@ -5,6 +5,5 @@ class HomeController < ApplicationController
 
   def search
     @articles = Article.search(params[:text]).top(10)
-    render 'index'
   end
 end
