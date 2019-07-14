@@ -1,11 +1,11 @@
-= form_for @article do |f|
+= form_for article do |f|
 
-  - if @article.errors.any?
+  - if article.errors.any?
     #error_explanation
       .alert.alert-danger
         %h2= "保存に失敗しました"
         %ul
-          - @article.errors.full_messages.each do |message|
+          - article.errors.full_messages.each do |message|
             %li= message
 
   .field
