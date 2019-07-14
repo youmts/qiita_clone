@@ -2,12 +2,13 @@ FactoryBot.define do
   factory :article do
     title { "MyString" }
     body { "MyText" }
-    user { nil }
+
+    association :user
   end
 
   factory :user do
     name {"John"}
-    email {"test@example.com"}
+    sequence(:email) { |n| "test+#{n}@example.com"}
     password {"password"}
     password_confirmation {"password"}
   end
