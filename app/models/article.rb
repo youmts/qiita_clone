@@ -11,4 +11,7 @@ class Article < ApplicationRecord
   scope :search, -> (text) {
     where("title like '%'||?||'%' or body like '%'||?||'%'", text, text)
   }
+  scope :favorite, -> (user) {
+    tagged_with(user.tag_list, :any => true) if user.present?
+  }
 end

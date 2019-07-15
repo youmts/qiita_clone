@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   include Pagy::Backend
 
   def index
-    @pagy, @articles = pagy(Article.top)
+    @pagy, @articles = pagy(Article.favorite(current_user).top)
   end
 
   def search
