@@ -1,4 +1,3 @@
----
 ja:
   activerecord:
     attributes:
@@ -7,3 +6,6 @@ ja:
         body: "本文"
     models:
       article: "記事"
+
+  tags:
+    description: "(スペースで区切ってください)"

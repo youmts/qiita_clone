@@ -1,6 +1,9 @@
 %h1
   = article.title
 
+%p
+  = render 'tags/show', tags: article.tag_list
+  
 .row
   .col-sm-8= article.user.name
   .col-sm-2<

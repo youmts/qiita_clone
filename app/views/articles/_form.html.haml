@@ -14,6 +14,11 @@
       = f.text_field :title, class: "form-control"
   .field
     .form-group
+      = f.label :tag_list
+      %i= t 'tags.description'
+      = text_field_tag 'article[tag_list]', article.tag_list.join(" "), class: "form-control"
+  .field
+    .form-group
       = f.label :body
       = f.text_area :body, class: "form-control"
   .actions
