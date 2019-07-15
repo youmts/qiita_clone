@@ -17,10 +17,12 @@
           %li.nav-item
             %a.nav-link{:href => users_path}
               ユーザ一覧
-              %span.sr-only (current)
+          %li.nav-item
+            %a.nav-link{:href => tags_path}
+              タグ一覧
           - if user_signed_in?
             %li.nav-item
-              %a.nav-link{:href => new_article_path}
+              %a.nav-link.border.border-dark.rounded{:href => new_article_path}
                 投稿する
             %li.nav-item.dropdown
               %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
