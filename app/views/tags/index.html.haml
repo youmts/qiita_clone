@@ -1,0 +1,10 @@
+%h1 人気のタグ
+
+%table.table
+  %tbody
+    - @tags.each do |tag|
+      %tr
+        %td= tag.name
+        %td= tag.taggings_count
+
+= raw pagy_bootstrap_nav(@pagy)
