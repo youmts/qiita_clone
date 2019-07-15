@@ -8,12 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :articles
-  resources :tags, only: [:index] do
-    member do
-      post :add
-      delete :remove
-    end
-  end
+  resources :tags, only: [:index, :create, :destroy]
 
   devise_for :users, path: :devise, controllers: { registrations: 'registrations' }
 end
