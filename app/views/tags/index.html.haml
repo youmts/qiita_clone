@@ -1,6 +1,6 @@
 %h1 人気のタグ
 
-%table.table
+%table.table.tags-table
   %tbody
     - @tags.each do |tag|
       = render 'row', tag: tag
