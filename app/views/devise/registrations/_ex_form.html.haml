@@ -1,0 +1,12 @@
+.field
+  .form-group
+    = form.label :name
+    = form.text_field :name, autofocus: true, class: "form-control"
+  .field
+    .form-group
+      = form.label :email
+      = form.email_field :email, autocomplete: "email", class: "form-control"
+  .field
+    .form-group
+      = form.label :tag_list
+      = text_field_tag 'user[tag_list]', resource.tag_list.join(','), class: "form-control"
