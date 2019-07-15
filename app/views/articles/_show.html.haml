@@ -3,15 +3,16 @@
 
 %p
   = render 'tags/show', tags: article.tag_list
-  
-.row
-  .col-sm-8= article.user.name
-  .col-sm-2<
-    = distance_of_time_in_words_to_now(article.created_at)
-    前に作成
-  .col-sm-2<
-    = distance_of_time_in_words_to_now(article.updated_at)
-    前に更新
+
+%p<>
+  = article.user.name
+  さんが
+  = distance_of_time_in_words_to_now(article.created_at)
+  前に作成
+  (
+  = distance_of_time_in_words_to_now(article.updated_at)
+  前に更新
+  )
 
 .border.rounded
   %p
