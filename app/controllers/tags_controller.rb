@@ -10,11 +10,13 @@ class TagsController < ApplicationController
   def create
     @tag = set_tag(params[:tag_id])
     current_user.tags << @tag unless current_user.tags.exists?(@tag.id)
+    render 'reload_row'
   end
 
   def destroy
     @tag = set_tag(params[:id])
     current_user.tags.destroy(@tag)
+    render 'reload_row'
   end
 
   private

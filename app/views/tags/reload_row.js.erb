@@ -1,0 +1,6 @@
+(function () {
+  const selector = ".tags-table .tags-row-" + <%= @tag.id %>;
+  const html = "<%= j(render 'row', tag: @tag)  %>";
+  document.querySelector(selector).innerHTML = html;
+}());
+
