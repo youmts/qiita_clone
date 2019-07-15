@@ -3,6 +3,9 @@
   %td= tag.taggings_count
   %td
     - if current_user.tags.include?(tag)
-      = link_to "解除", tag_path(tag), method: :delete
+      = form_tag tag_path(tag),  method: :delete, remote: true do
+        = submit_tag "フォロー解除", class: "btn btn-primary"
     - else
-      = link_to "フォロー", tags_path(params: { tag_id: tag.id }), method: :post
+      = form_tag tags_path, remote: true do
+        = hidden_field_tag :tag_id, tag.id
+        = submit_tag "フォロー", class: "btn btn-primary"
