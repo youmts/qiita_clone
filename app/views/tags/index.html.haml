@@ -3,13 +3,6 @@
 %table.table
   %tbody
     - @tags.each do |tag|
-      %tr
-        %td= tag.name
-        %td= tag.taggings_count
-        %td
-          - if current_user.tags.include?(tag)
-            = link_to "解除", tag_path(tag), method: :delete
-          - else
-            = link_to "フォロー", tags_path(params: { tag_id: tag.id }), method: :post
+      = render 'row', tag: tag
 
 = raw pagy_bootstrap_nav(@pagy)
