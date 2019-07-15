@@ -9,4 +9,5 @@
   .field
     .form-group
       = form.label :tag_list
+      %i (カンマで区切ってください)
       = text_field_tag 'user[tag_list]', resource.tag_list.join(','), class: "form-control"
