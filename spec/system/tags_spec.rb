@@ -13,7 +13,7 @@ RSpec.describe "Tags", :type => :system, js_headless: true do
   it "タグをフォローできること" do
     Capybara.exact = true
 
-    create(:article, tag_list: ["new_tag"])
+    create(:article, tag_list: ["tag"])
     sign_in user = create(:user)
 
     visit tags_path
@@ -22,6 +22,20 @@ RSpec.describe "Tags", :type => :system, js_headless: true do
       # wait ajax complete
       expect(page).to have_button("フォロー解除")
       expect(page).to have_no_button("フォロー")
-    }.to change { user.reload.tag_list }.from([]).to(["new_tag"])
+    }.to change { user.reload.tag_list }.from([]).to(["tag"])
+  end
+
+  it "タグをフォロー解除できること" do
+    Capybara.exact = true
+
+    sign_in user = create(:user, tag_list: ["tag"])
+
+    visit tags_path
+    expect {
+      click_button "フォロー解除"
+      # wait ajax complete
+      expect(page).to have_button("フォロー")
+      expect(page).to have_no_button("フォロー解除")
+    }.to change { user.reload.tag_list }.from(["tag"]).to([])
   end
 end
