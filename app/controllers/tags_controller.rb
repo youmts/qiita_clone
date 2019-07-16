@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
   include Pagy::Backend
 
-  before_action :authenticate_user!, only: [:add, :remove]
+  before_action :authenticate_user!, only: [:create, :destroy]
 
   def index
     @pagy, @tags = pagy(ActsAsTaggableOn::Tag.order(taggings_count: :desc))
