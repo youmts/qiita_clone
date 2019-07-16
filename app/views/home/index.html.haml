@@ -1,3 +1,5 @@
+= content_for(:html_title) { 'ホーム' }
+
 %h1 人気の記事
 = render 'articles/index', articles: @articles
 = raw pagy_bootstrap_nav(@pagy)
