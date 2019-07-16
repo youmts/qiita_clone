@@ -1,0 +1,5 @@
+(function() {
+  document
+    .querySelector(".comment-list .comment-item-" + <%= @comment.id %>)
+    .remove();
+}());

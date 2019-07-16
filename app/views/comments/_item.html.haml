@@ -1,7 +1,12 @@
-%p<>
-  - user = comment.user
-  = user.name
-  さんが
-  = distance_of_time_in_words_to_now(comment.created_at)
-  前にコメント
-%p.border.rounded= comment.body
+%div{class: "comment-item-#{comment.id}"}
+  %p<>
+    - user = comment.user
+    = user.name
+    さんが
+    = distance_of_time_in_words_to_now(comment.created_at)
+    前にコメント
+
+    - if comment.user == current_user
+      = link_to "x", [comment.article, comment], method: :delete, remote: true
+
+  %p.border.rounded= comment.body

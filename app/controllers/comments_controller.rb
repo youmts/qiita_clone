@@ -4,11 +4,13 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @article.comments.build(comment_params)
-
     @comment.save!
   end
 
   def destroy
+    @comment = @article.comments.find(params[:id])
+    raise ActiveRecord::RecordNotFound unless @comment.user == current_user
+    @comment.destroy!
   end
 
   private
