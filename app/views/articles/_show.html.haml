@@ -17,9 +17,8 @@
   前に更新
   )
 
-.border.rounded
-  %p
-    = simple_format(h(article.body))
+.border.rounded.text-break
+  = simple_format(h(article.body))
 
 = render "comments/list", comments: article.comments.order(:created_at)
 = render "comments/form", article: article

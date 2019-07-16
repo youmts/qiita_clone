@@ -9,4 +9,5 @@
     - if comment.user == current_user
       = link_to "x", [comment.article, comment], method: :delete, remote: true, data: {confirm: '削除しますか？'}, class: "badge badge-primary"
 
-  %p.border.rounded= comment.body
+  .border.rounded.text-break
+    = simple_format(h(comment.body))
