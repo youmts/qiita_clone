@@ -96,7 +96,13 @@ RSpec.configure do |config|
 
   config.before(:each) do |example|
     if example.metadata[:type] == :system
-      driven_by :rack_test
+      if example.metadata[:js_headless]
+        # :jsだとどうしてもheadlessモードにならないので・・・独自のmetadataを使うことにする
+        driven_by :selenium_chrome_headless, screen_size: [1400, 1400]
+      else
+        # jsを使用しない場合は、高速なrack_testを使う
+        driven_by :rack_test
+      end
     end
   end
 end
