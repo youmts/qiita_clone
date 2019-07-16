@@ -12,4 +12,11 @@ FactoryBot.define do
     password {"password"}
     password_confirmation {"password"}
   end
+
+  factory :comment do
+    body { "MyText" }
+
+    association :user
+    association :article
+  end
 end
