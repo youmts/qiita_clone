@@ -1,0 +1,7 @@
+(function() {
+  document
+    .querySelector(".comment-list")
+    .insertAdjacentHTML("beforeend", "<%= j(render 'item', comment: @comment) %>");
+
+  document.querySelector(".comment-form #comment_body").value = "";
+}());

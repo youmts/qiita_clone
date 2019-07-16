@@ -1,7 +1,8 @@
-%h5 コメントを投稿する
-= form_for [article, article.comments.build], remote: true do |f|
-  .field
-    .form-group
-      = f.text_field :body, class: "form-control", placeholder: "コメントを入力してください..."
-  .actions
-    = f.submit '投稿', class: "btn btn-primary"
+.comment-form
+  %h5 コメントを投稿する
+  = form_for [article, article.comments.build], remote: true do |f|
+    .field
+      .form-group
+        = f.text_field :body, class: "form-control", placeholder: "コメントを入力してください..."
+    .actions
+      = f.submit '投稿', class: "btn btn-primary"

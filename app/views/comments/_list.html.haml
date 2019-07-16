@@ -1,10 +1,6 @@
 %h3 コメント
 
-- comments.each do |comment|
-  %p<>
-    - user = comment.user
-    = user.name
-    さんが
-    = distance_of_time_in_words_to_now(comment.created_at)
-    前にコメント
-  %p.border.rounded= comment.body
+.comment-list
+  - comments.each do |comment|
+    -# render 'item' はエラーになってしまうので仕方なく
+    = render 'comments/item', comment: comment
