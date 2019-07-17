@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_article
 
   def create
-    @comment = @article.comments.build(comment_params)
+    @comment = current_user.comments.build(comment_params)
 
     if @comment.save
       render
@@ -13,9 +13,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    # TODO current_user.comments...
-    @comment = @article.comments.find(params[:id])
-    raise ActiveRecord::RecordNotFound unless @comment.user == current_user
+    @comment = current_user.comments.where(article: @article).find(params[:id])
     @comment.destroy!
   end
 
@@ -25,9 +23,8 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      # TODO make cool
       p = params.require(:comment).permit(:body)
-      p[:user] = current_user
+      p[:article] = @article
       p
     end
 end
