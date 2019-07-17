@@ -1,4 +1,3 @@
 = content_for(:html_title) { 'タグ表示' }
 - tags.each do |tag|
-  %span.badge.badge-primary
-    = tag
+  = link_to tag.name, tag_path(tag), class: "badge badge-primary"

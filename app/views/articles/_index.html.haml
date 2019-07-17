@@ -3,6 +3,6 @@
     - articles.each do |article|
       %tr
         %td= link_to article.title, [article.user, article]
-        %td= render 'tags/show', tags: article.tag_list
+        %td= render 'tags/show', tags: article.tags
         %td= render 'comments/count', article: article
         %td= article.user.name
