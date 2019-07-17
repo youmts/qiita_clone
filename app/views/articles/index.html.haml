@@ -8,6 +8,7 @@
       %tr
         %td= link_to article.title, article
         %td= render 'tags/show', tags: article.tag_list
+        %td= render 'comments/count', article: article
         %td
           = link_to '編集', edit_article_path(article), class: "btn btn-primary"
           = link_to '削除', article, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"
