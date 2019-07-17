@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe "Comments", type: :system, js_headless: true do
+  COMMENT_BODY_SELECTOR = "form.new_comment #comment_body"
+
   it "コメントできること" do
     article = create(:article)
     sign_in create(:user)
@@ -8,7 +10,7 @@ RSpec.describe "Comments", type: :system, js_headless: true do
     visit user_article_path(article.user, article)
 
     expect(page).not_to have_content("新しいコメント")
-    find("form.new_comment #comment_body").fill_in with: "新しいコメント"
+    find(COMMENT_BODY_SELECTOR).fill_in with: "新しいコメント"
 
     expect {
       click_button "投稿"
@@ -39,5 +41,17 @@ RSpec.describe "Comments", type: :system, js_headless: true do
     }.to change(Comment, :count).by(-1)
   end
 
-  it "コメントが空の場合エラーになること"
+  it "コメントが空の場合エラーになること" do
+    article = create(:article)
+    visit user_article_path(article.user, article)
+
+    find(COMMENT_BODY_SELECTOR).fill_in with: ""
+
+    expect {
+      click_button "投稿"
+      # wait ajax complete
+      expect(page).to have_content("エラー")
+    }.to change(Comment, :count).by(0).and \
+      change(ActionMailer::Base.deliveries, :count).by(0)
+  end
 end
