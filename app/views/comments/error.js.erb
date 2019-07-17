@@ -1,0 +1,5 @@
+(function() {
+  // reload form
+  document.querySelector(".comment-form").outerHTML =
+    "<%= j(render 'form', comment: @comment) %>";
+}());

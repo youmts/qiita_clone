@@ -4,7 +4,12 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @article.comments.build(comment_params)
-    @comment.save!
+
+    if @comment.save
+      render
+    else
+      render 'error'
+    end
   end
 
   def destroy

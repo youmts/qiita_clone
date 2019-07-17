@@ -1,7 +1,10 @@
 (function() {
+  // add new comment to last
   document
     .querySelector(".comment-list")
     .insertAdjacentHTML("beforeend", "<%= j(render 'item', comment: @comment) %>");
 
-  document.querySelector(".comment-form #comment_body").value = "";
+  // reload form
+  document.querySelector(".comment-form").outerHTML =
+    "<%= j(render 'form', comment: @comment.article.comments.build) %>";
 }());
