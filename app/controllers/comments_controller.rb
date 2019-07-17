@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_params)
+    @comment.article = @article
 
     if @comment.save
       render
@@ -23,8 +24,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      p = params.require(:comment).permit(:body)
-      p[:article] = @article
-      p
+      params.require(:comment).permit(:body)
     end
 end
