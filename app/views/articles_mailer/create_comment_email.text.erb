@@ -1,0 +1,7 @@
+<%- article = @comment.article %>
+<%= article.title %>
+<%= user_article_url(article.user, article) %>
+
+<%= @comment.user.name %> がコメント
+
+<%= @comment.body %>
