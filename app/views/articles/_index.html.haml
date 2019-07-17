@@ -4,4 +4,7 @@
       %tr
         %td= link_to article.title, [article.user, article]
         %td= render 'tags/show', tags: article.tag_list
+        %td
+          = fa_icon "comment"
+          = article.comments.count
         %td= article.user.name
