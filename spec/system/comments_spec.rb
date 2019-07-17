@@ -14,9 +14,12 @@ RSpec.describe "Comments", type: :system, js_headless: true do
       click_button "投稿"
       # wait ajax complete
       expect(page).to have_content("新しいコメント")
-    }.to change(Comment, :count).by(1)
+    }.to \
+      change(Comment, :count).by(1).and \
+      change(ActionMailer::Base.deliveries, :count).by(1)
 
-    # TODO mail test
+    mail = ActionMailer::Base.deliveries.last
+    expect(mail.body.raw_source).to include "新しいコメント"
   end
 
   it "コメントを削除できること" do
