@@ -5,8 +5,6 @@ class CommentsController < ApplicationController
   def create
     @comment = @article.comments.build(comment_params)
     @comment.save!
-
-    ArticlesMailer.with(user: current_user, comment: @comment)
   end
 
   def destroy
