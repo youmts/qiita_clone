@@ -1,24 +1,16 @@
-# README
+# Qiitaの簡単なクローン
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 実装済み機能
+* サインアップ、ログイン
+* 記事の追加、参照機能
+* ユーザと記事にタグ追加機能
+* コメント機能
+* heroku向けproduction
+* RSpec(Systemのみ)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 未実装の機能
+* omniauth
+* 記事のドラフト
+* いいね
+* いいね数とかによる記事の順序付け
+* コントリビュート数
