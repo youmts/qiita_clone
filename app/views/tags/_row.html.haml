@@ -1,4 +1,5 @@
-%td= tag.name
+%td
+  = link_to tag.name, tag_path(tag)
 %td= tag.taggings_count
 %td
   - if current_user

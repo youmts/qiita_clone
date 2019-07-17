@@ -7,6 +7,11 @@ class TagsController < ApplicationController
     @pagy, @tags = pagy(ActsAsTaggableOn::Tag.order(taggings_count: :desc))
   end
 
+  def show
+    @tag = ActsAsTaggableOn::Tag.find(params[:id])
+    @pagy, @articles = pagy(Article.tagged_with(@tag).top)
+  end
+
   def create
     @tag = set_tag(params[:tag_id])
     current_user.tags << @tag unless current_user.tags.exists?(@tag.id)

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
-  resources :tags, only: [:index, :create, :destroy]
+  resources :tags, only: [:index, :show, :create, :destroy]
 
   devise_for :users, path: :devise, controllers: { registrations: 'registrations' }
 end
