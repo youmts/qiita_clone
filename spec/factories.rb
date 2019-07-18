@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :article do
     title { "MyString" }
     body { "MyText" }
+    tag_list { ["tag"] }
 
     association :user
   end
@@ -11,6 +12,7 @@ FactoryBot.define do
     sequence(:email) { |n| "test+#{n}@example.com"}
     password {"password"}
     password_confirmation {"password"}
+    tag_list { ["tag"] }
   end
 
   factory :comment do

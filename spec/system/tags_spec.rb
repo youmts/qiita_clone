@@ -14,7 +14,7 @@ RSpec.describe "Tags", :type => :system, js_headless: true do
     Capybara.exact = true
 
     create(:article, tag_list: ["tag"])
-    sign_in user = create(:user)
+    sign_in user = create(:user, tag_list: [])
 
     visit tags_path
     expect {
