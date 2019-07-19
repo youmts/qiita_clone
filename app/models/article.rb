@@ -9,7 +9,7 @@ class Article < ApplicationRecord
   default_scope { includes(:user) }
 
   scope :top, -> { order(updated_at: :desc) }
-  scope :search, -> (text) {
+  scope :_search, -> (text) {
     tag = ActsAsTaggableOn::Tag.find_by_name(text)
     if tag.present?
       Article.tagged_with(tag.name)
