@@ -7,12 +7,12 @@
 * コメント
 * heroku向けconfig/production
 * RSpec(Systemのみ)
+* いいね
 
 ## 未実装の機能
 * omniauth
 * 記事のドラフト
 * markdown
 * 画像アップロード
-* いいね
 * いいね数とかによる記事の順序付け
 * コントリビュート数
