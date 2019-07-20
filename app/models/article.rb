@@ -5,6 +5,7 @@ class Article < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   acts_as_taggable
+  acts_as_votable
 
   default_scope { includes(:user) }
 
