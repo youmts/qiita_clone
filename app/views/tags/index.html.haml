@@ -4,9 +4,6 @@
 
 %table.table.tags-table
   %tbody
-    - @tags.each do |tag|
-      -# for ajax
-      %tr{class: "tags-row-#{tag.id}"}
-        = render 'row', tag: tag
+    = render(partial: 'tags/tag', collection: @tags, as: :tag) || "１件も見つかりませんでした。"
 
 = raw pagy_bootstrap_nav(@pagy)
