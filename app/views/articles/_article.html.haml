@@ -3,6 +3,9 @@
   %td= link_to article.user.name, article.user
   %td= render 'tags/tags_label', tags: article.tags
   %td= render 'comments/count', article: article
+  %td
+    = fa_icon "thumbs-up"
+    = article.get_likes.size
   - if current_user == article.user
     %td
       = link_to '編集', edit_article_path(article), class: "btn btn-primary"
