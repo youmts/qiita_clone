@@ -1,19 +1,25 @@
 = content_for(:html_title, '記事一覧')
 
-%h1 あなたの記事一覧
+%h1 記事一覧
 
-%table.table
-  %tbody
-    - @articles.each do |article|
-      %tr
-        %td= link_to article.title, article
-        %td= render 'tags/show', tags: article.tags
-        %td= render 'comments/count', article: article
-        %td
-          = link_to '編集', edit_article_path(article), class: "btn btn-primary"
-          = link_to '削除', article, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"
+= search_form_for @q do |f|
+  .form-group
+    = f.label :title_or_body_cont
+    = f.search_field :title_or_body_cont, class: "form-control"
+
+  .form-group
+    -# FIXME 複数検索にしたい
+    -# FIXME i18nで"Tag Name"を日本語化したい
+    = f.label :tags_name_in
+    = f.text_field :tags_name_in, class: "form-control"
+
+  = f.submit "検索", class: "btn btn-primary"
+
+.mt-3
+  = render 'index', articles: @articles
 
 = raw pagy_bootstrap_nav(@pagy)
 %br
 
-= link_to '新規記事', new_article_url
+- if current_user
+  = link_to '新規記事', new_article_url

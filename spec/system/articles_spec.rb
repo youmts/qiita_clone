@@ -4,9 +4,9 @@ RSpec.describe "Articles", :type => :system do
   it "記事はログインしていなくても参照できること" do
     article = create(:article)
 
-    visit user_article_path(article.user, article)
+    visit article_path(article)
 
-    expect(page).to have_current_path user_article_path(article.user, article)
+    expect(page).to have_current_path article_path(article)
   end
 
   it "記事は作成者でなくても参照できること" do
@@ -16,9 +16,9 @@ RSpec.describe "Articles", :type => :system do
     sign_in user = create(:user)
     expect(user).not_to be article.user
 
-    visit user_article_path(article.user, article)
+    visit article_path(article)
 
-    expect(page).to have_current_path user_article_path(article.user, article)
+    expect(page).to have_current_path article_path(article)
   end
 
   it "記事が作成できること" do

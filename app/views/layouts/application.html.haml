@@ -16,6 +16,9 @@
       #navbarSupportedContent.collapse.navbar-collapse
         %ul.navbar-nav.mr-auto
           %li.nav-item
+            %a.nav-link{:href => articles_path}
+              記事一覧
+          %li.nav-item
             %a.nav-link{:href => users_path}
               ユーザ一覧
           %li.nav-item
@@ -35,8 +38,11 @@
           - else
             %a.nav-link{:href => new_user_session_path}
               ログイン
-        = form_tag home_search_path, :method => 'get', class: "form-inline my-2 my-lg-0" do
-          = text_field_tag :text, nil, placeholder: "ここに入力", type: "search", class: "form-control mr-sm-2", "aria-label" => "Search"
+
+        = search_form_for Article.ransack, class: "form-inline my-2 my-lg-0" do |f|
+          .form-group
+            = f.search_field :title_or_body_cont, placeholder: "ここに入力",
+              class: "form-control mr-sm-2", "aria-label" => "Search"
           = submit_tag "検索", class: "btn btn-outline-success my-2 my-sm-0"
 
     .container

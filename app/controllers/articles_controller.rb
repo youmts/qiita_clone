@@ -1,14 +1,16 @@
 class ArticlesController < ApplicationController
   include Pagy::Backend
 
-  before_action :authenticate_user!
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_article_owner, only: [:edit, :update, :destroy]
 
   def index
-    @pagy, @articles = pagy(current_user.articles.top)
+    @q = Article.ransack(params[:q])
+    @pagy, @articles = pagy(@q.result.top)
   end
 
   def show
+    @article = Article.find(params[:id])
   end
 
   def new
@@ -48,7 +50,7 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def set_article
+    def set_article_owner
       @article = current_user.articles.find(params[:id])
     end
 

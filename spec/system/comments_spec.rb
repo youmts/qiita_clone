@@ -7,7 +7,7 @@ RSpec.describe "Comments", type: :system, js_headless: true do
     article = create(:article)
     sign_in create(:user)
 
-    visit user_article_path(article.user, article)
+    visit article_path(article)
 
     expect(page).not_to have_content("新しいコメント")
     find(COMMENT_BODY).fill_in with: "新しいコメント"
@@ -28,7 +28,7 @@ RSpec.describe "Comments", type: :system, js_headless: true do
     comment = create(:comment, body: "削除するコメント")
     sign_in comment.user
 
-    visit user_article_path(comment.article.user, comment.article)
+    visit article_path(comment.article)
     expect(page).to have_content("削除するコメント")
     selector = "a[data-method=\"delete\"][href=\"#{article_comment_path(comment.article, comment)}\""
     expect(page).to have_selector(selector, count: 1)
@@ -45,7 +45,7 @@ RSpec.describe "Comments", type: :system, js_headless: true do
     article = create(:article)
     sign_in article.user
     
-    visit user_article_path(article.user, article)
+    visit article_path(article)
 
     find(COMMENT_BODY).fill_in with: ""
 

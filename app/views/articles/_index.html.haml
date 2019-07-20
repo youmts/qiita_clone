@@ -2,7 +2,11 @@
   %tbody
     - articles.each do |article|
       %tr
-        %td= link_to article.title, [article.user, article]
+        %td= link_to article.title, article
+        %td= link_to article.user.name, article.user
         %td= render 'tags/show', tags: article.tags
         %td= render 'comments/count', article: article
-        %td= article.user.name
+        - if current_user == article.user
+          %td
+            = link_to '編集', edit_article_path(article), class: "btn btn-primary"
+            = link_to '削除', article, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"

@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   get 'home/search'
   root to: 'home#index'
 
-  resources :users, only: [:index, :show] do
-    resources :articles, only: [:show], controller: 'users/articles'
-  end
+  resources :users, only: [:index, :show]
 
   resources :articles do
     resources :comments, only: [:create, :destroy]
