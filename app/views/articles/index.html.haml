@@ -8,8 +8,8 @@
     = f.search_field :title_or_body_cont, class: "form-control"
 
   .form-group
-    -# FIXME 複数検索にしたい
-    -# FIXME i18nで"Tag Name"を日本語化したい
+    -# HACK 複数検索にしたい
+    -# HACK i18nで"Tag Name"を日本語化したい
     = f.label :tags_name_in
     = f.text_field :tags_name_in, class: "form-control"
 
