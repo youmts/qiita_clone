@@ -1,7 +1,9 @@
 %tr{class: "tags-row-#{tag.id}"}
   %td
     = link_to tag.name, tag_path(tag)
-  %td= tag.taggings_count
+  %td
+    = fa_icon "heart"
+    = tag.taggings_count
   %td
     - if current_user
       - if current_user.tags.include?(tag)
