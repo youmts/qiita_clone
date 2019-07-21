@@ -10,18 +10,4 @@ class Article < ApplicationRecord
   default_scope { includes(:user) }
 
   scope :top, -> { order(updated_at: :desc) }
-  scope :_search, -> (text) {
-    tag = ActsAsTaggableOn::Tag.find_by_name(text)
-    if tag.present?
-      Article.tagged_with(tag.name)
-    else
-      like(text)
-    end
-  }
-  scope :favorite, -> (user) {
-    tagged_with(user.tag_list, :any => true) if user.present?
-  }
-  scope :like, -> (text) {
-    where("title like '%'||?||'%' or body like '%'||?||'%'", text, text)
-  }
 end
