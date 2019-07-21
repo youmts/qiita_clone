@@ -6,7 +6,8 @@
 
 %p
   .likes-link-to
-    = likes_link_to article
+    = log_in_required "いいねするためにはログインが必要です" do
+      = likes_link_to article
 
 %p
   = render 'tags/tags_label', tags: article.tags
@@ -25,5 +26,6 @@
   = simple_format(h(article.body))
 
 = render "comments/list", comments: article.comments.order(:created_at)
-= render "comments/form", comment: article.comments.build
 
+= log_in_required "コメントをするためにはログインが必要です" do
+  = render "comments/form", comment: article.comments.build
