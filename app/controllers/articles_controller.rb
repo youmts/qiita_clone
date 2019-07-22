@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   before_action :set_article_owner, only: [:edit, :update, :destroy]
 
   def index
-    @q = Article.ransack(params[:q])
+    @q = Article.ransack(articles_search_params)
     @pagy, @articles = pagy(@q.result.top)
   end
 
@@ -50,6 +50,9 @@ class ArticlesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    def articles_search_params
+      params.require(:q).permit(:title_or_body_cont, :tags_name_in)
+    end
     def article_params
       params.require(:article).permit(:title, :tag_list, :body)
     end
