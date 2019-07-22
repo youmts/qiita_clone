@@ -51,6 +51,7 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def articles_search_params
+      return nil unless params.include?(:q)
       params.require(:q).permit(:title_or_body_cont, :tags_name_in)
     end
     def article_params
