@@ -23,30 +23,25 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.build(article_params)
 
-    respond_to do |format|
-      if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if @article.save
+      redirect_to @article, notice: 'Article was successfully created.'
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @article.update(article_params)
+      redirect_to @article, notice: 'Article was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @article.destroy
-    respond_to do |format|
-      format.html { redirect_to articles_path, notice: 'Article was successfully destroyed.' }
-    end
+
+    redirect_to articles_path, notice: 'Article was successfully destroyed.'
   end
 
   private
