@@ -48,6 +48,8 @@ gem 'pagy'
 gem 'acts-as-taggable-on'
 gem 'acts_as_votable'
 
+gem 'enumerize'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

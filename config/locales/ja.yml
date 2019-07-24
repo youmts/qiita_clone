@@ -4,8 +4,15 @@ ja:
       article:
         title: "タイトル"
         body: "本文"
+        status: "状態"
     models:
       article: "記事"
 
   tags:
     description: "(スペースで区切ってください)"
+
+  enumerize:
+    article:
+      status:
+        draft: ドラフト
+        open: 公開

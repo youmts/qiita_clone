@@ -6,7 +6,11 @@ class ArticlesController < ApplicationController
 
   def index
     @q = Article.ransack(articles_search_params)
-    @pagy, @articles = pagy(@q.result.top)
+    @pagy, @articles = pagy(@q.result.open.top)
+  end
+
+  def drafts
+    @pagy, @articles = pagy(current_user.articles.draft.top)
   end
 
   def show
@@ -55,6 +59,6 @@ class ArticlesController < ApplicationController
       params.require(:q).permit(:title_or_body_cont, :tags_name_in)
     end
     def article_params
-      params.require(:article).permit(:title, :tag_list, :body)
+      params.require(:article).permit(:title, :tag_list, :body, :status)
     end
 end

@@ -9,7 +9,7 @@ class TagsController < ApplicationController
 
   def show
     @tag = ActsAsTaggableOn::Tag.find(params[:id])
-    @pagy, @articles = pagy(Article.tagged_with(@tag).top)
+    @pagy, @articles = pagy(Article.tagged_with(@tag).open.top)
   end
 
   def create

@@ -33,6 +33,7 @@
                 マイメニュー
               .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
                 = link_to "自分の記事", articles_path, class: "dropdown-item"
+                = link_to "ドラフトの記事", drafts_articles_path, class: "dropdown-item"
                 = link_to "プロフィール", edit_user_registration_path, class: "dropdown-item"
                 = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item"
           - else

@@ -16,5 +16,9 @@
     .form-group
       = f.label :body
       = f.text_area :body, class: "form-control"
+  - if article.status.draft?
+    .field
+      .form-group
+        = f.select :status, Article.status.options, {}, {class: "custom-select custom-select-lg"}
   .actions
-    = f.submit '公開', class: "btn btn-primary"
+    = f.submit '保存', class: "btn btn-primary"
