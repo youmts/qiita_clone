@@ -3,6 +3,7 @@ FactoryBot.define do
     title { "MyString" }
     body { "MyText" }
     tag_list { ["tag"] }
+    status { :open }
 
     association :user
   end

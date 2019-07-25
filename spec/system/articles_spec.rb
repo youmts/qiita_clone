@@ -33,7 +33,7 @@ RSpec.describe "Articles", :type => :system do
     fill_in "本文", with: "本文"
 
     expect {
-      click_button "公開"
+      click_button "保存"
     }.to change(Article, :count).by(1)
 
     expect(page).to have_current_path article_path(Article.last)
@@ -46,7 +46,7 @@ RSpec.describe "Articles", :type => :system do
     visit articles_path
     click_link "編集"
 
-    click_button "公開"
+    click_button "保存"
 
     expect(page).to have_current_path article_path(article)
   end
@@ -62,5 +62,33 @@ RSpec.describe "Articles", :type => :system do
     }.to change(Article, :count).by(-1)
 
     expect(page).to have_current_path articles_path
+  end
+
+  context "ドラフト状態の記事の場合" do
+    before do
+      @article = create(:article, status: :draft, title: "draft")
+    end
+
+    it "記事が記事一覧で参照できないこと" do
+      visit articles_path
+      expect(page).not_to have_content "draft"
+    end
+
+    it "記事がユーザページで参照できないこと" do
+      visit user_path(@article.user)
+      expect(page).not_to have_content "draft"
+    end
+
+    it "記事がタグページで参照できないこと" do
+      visit tag_path(@article.tags.first)
+      expect(page).not_to have_content "draft"
+    end
+
+    it "作成したユーザのドラフトページで参照できること" do
+      sign_in @article.user
+      visit drafts_articles_path
+
+      expect(page).to have_content "draft"
+    end
   end
 end
