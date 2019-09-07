@@ -8,6 +8,5 @@
       = form.email_field :email, autocomplete: "email", class: "form-control"
   .field
     .form-group
-      = form.label :tag_list
-      %i= t 'tags.description'
-      = text_field_tag 'user[tag_list]', resource.tag_list.join(" "), class: "form-control"
+      = form.collection_select :tag_list, Tag.all, :name, :name, {}, {multiple: "multiple", class: "js-tags-select"}
+

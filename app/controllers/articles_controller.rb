@@ -58,6 +58,6 @@ class ArticlesController < ApplicationController
       params.fetch(:q, {}).permit(:title_or_body_cont, :tags_name_in)
     end
     def article_params
-      params.require(:article).permit(:title, :tag_list, :body, :status)
+      params.require(:article).permit(:title, :body, :status, tag_list: [])
     end
 end

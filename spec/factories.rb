@@ -1,4 +1,10 @@
 FactoryBot.define do
+  factory :tag do
+    sequence :name do |n|
+      "tag#{n}"
+    end
+  end
+
   factory :article do
     title { "MyString" }
     body { "MyText" }

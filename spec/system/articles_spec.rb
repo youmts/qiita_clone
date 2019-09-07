@@ -1,6 +1,9 @@
 require "rails_helper"
 
-RSpec.describe "Articles", :type => :system do
+RSpec.describe "Articles", :type => :system, js_headless: true do
+  let!(:tag1) { create(:tag) }
+  let!(:tag2) {create(:tag) }
+
   it "記事はログインしていなくても参照できること" do
     article = create(:article)
 
@@ -31,6 +34,7 @@ RSpec.describe "Articles", :type => :system do
 
     fill_in "タイトル", with: "私の記事"
     fill_in "本文", with: "本文"
+    select tag1.name, from: "article_tag_list"
 
     expect {
       click_button "保存"
@@ -58,10 +62,12 @@ RSpec.describe "Articles", :type => :system do
     visit articles_path
 
     expect {
-      click_link "削除"
-    }.to change(Article, :count).by(-1)
+      accept_alert {
+        click_link "削除"
+      }
 
-    expect(page).to have_current_path articles_path
+      expect(page).to have_current_path articles_path
+    }.to change(Article, :count).by(-1)
   end
 
   context "ドラフト状態の記事の場合" do

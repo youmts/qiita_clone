@@ -34,6 +34,7 @@ gem 'turbolinks', '~> 5'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
+gem 'select2-rails'
 
 gem 'haml-rails'
 
