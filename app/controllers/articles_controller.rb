@@ -30,6 +30,7 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to @article, notice: 'Article was successfully created.'
     else
+      # FIXME エラー時に新規作成タグが再表示されない
       render :new
     end
   end

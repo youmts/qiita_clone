@@ -25,6 +25,7 @@ $(document).on('turbolinks:load', function() {
   $('.js-tags-select').select2({
     width: '100%',
     allowClear: true,
+    tags: true,
     placeholder: "プログラミング技術に関連するタグをスペース区切りで入力",
   });
 
