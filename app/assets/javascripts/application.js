@@ -17,6 +17,8 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require select2
+//= require c3
+//= require d3
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
@@ -24,5 +26,17 @@ $(document).on('turbolinks:load', function() {
     width: '100%',
     allowChar: true,
     placeholder: "プログラミング技術に関連するタグをスペース区切りで入力",
+  });
+
+  c3.generate({
+    bindto: '.js-tags-chart',
+    size: {
+      height: 200,
+      width: 200,
+    },
+    data: {
+      columns: gon.tags_count,
+      type: 'pie',
+    },
   });
 });

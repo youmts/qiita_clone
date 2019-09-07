@@ -60,6 +60,7 @@ GEM
       sassc-rails (>= 2.0.0)
     builder (3.2.3)
     byebug (11.0.1)
+    c3-rails (0.4.18)
     capybara (3.25.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -79,6 +80,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
+    d3-rails (3.5.17)
+      railties (>= 3.1)
     devise (4.6.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -104,6 +107,10 @@ GEM
       railties (>= 3.2, < 6.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gon (6.2.1)
+      actionpack (>= 3.0)
+      multi_json
+      request_store (>= 1.0)
     haml (5.1.1)
       temple (>= 0.8.0)
       tilt
@@ -145,6 +152,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     msgpack (1.3.0)
+    multi_json (1.13.1)
     nio4r (2.4.0)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
@@ -194,6 +202,8 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     regexp_parser (1.5.1)
+    request_store (1.4.1)
+      rack (>= 1.4)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -294,14 +304,17 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap
   byebug
+  c3-rails
   capybara (>= 2.15)
   coffee-rails (~> 4.2)
+  d3-rails (~> 3.5)
   devise
   devise-i18n
   devise-i18n-views
   enumerize
   factory_bot_rails
   font-awesome-rails
+  gon
   haml-rails
   jquery-rails
   letter_opener

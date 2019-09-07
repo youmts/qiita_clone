@@ -5,5 +5,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    gon.tags_count = @user.articles_tags_count.to_a
   end
 end

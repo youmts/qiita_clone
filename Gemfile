@@ -35,6 +35,9 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'select2-rails'
+gem 'c3-rails'
+gem 'd3-rails', '~> 3.5'
+gem 'gon' # for send data to js from rails
 
 gem 'haml-rails'
 
