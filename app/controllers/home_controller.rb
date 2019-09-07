@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   include Pagy::Backend
 
-  def index
+  def trend
     @pagy, @articles = pagy(Article.top)
   end
 end
