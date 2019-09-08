@@ -15,15 +15,21 @@ class Article < ApplicationRecord
   scope :top, -> { order(updated_at: :desc) }
 
   def self.trend(duration, limit)
-    # FIXME とても重い処理なのでバッチで計算させるようにすべき
+    # FIXME 重い処理なのでバッチで計算させるようにすべき
 
-    articles_votes = all.map do |a|
-      [a.id, a.get_likes
-        .where("created_at >= :date", date: Time.current.ago(duration)).size]
-    end
-
-    ids = articles_votes.sort { |a, b| b[1] <=> a[1]}.map { |x| x[0] }.take(limit)
-
-    Article.find(ids)
+    find_by_sql([<<-'SQL', duration_begin: Time.current.ago(duration), limit: limit])
+      SELECT articles.*
+      FROM articles
+      LEFT OUTER JOIN (
+        SELECT votable_id, row_number() over (ORDER BY count(*) DESC, votable_id) row_number, count(*), max(created_at)
+        FROM votes
+        WHERE votable_type = 'Article'
+          AND created_at >= :duration_begin
+        GROUP BY votable_id
+      ) vote_count
+      ON articles.id = vote_count.votable_id
+      ORDER BY vote_count.row_number
+      LIMIT :limit
+    SQL
   end
 end
