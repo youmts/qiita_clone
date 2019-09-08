@@ -61,4 +61,5 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::IntegrationHelpers, type: :system
+  config.include ActiveSupport::Testing::TimeHelpers
 end
