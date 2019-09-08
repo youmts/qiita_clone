@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'home#trend'
+  get 'tag-feed', to: 'home#tag_feed'
 
   resources :users, only: [:index, :show]
 

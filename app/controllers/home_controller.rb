@@ -4,4 +4,8 @@ class HomeController < ApplicationController
   def trend
     @pagy, @articles = pagy(Article.top)
   end
+
+  def tag_feed
+    @pagy, @articles = pagy(Article.top)
+  end
 end
