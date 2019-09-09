@@ -21,7 +21,7 @@ class Article < ApplicationRecord
       SELECT articles.*
       FROM articles
       LEFT OUTER JOIN (
-        SELECT votable_id, row_number() over (ORDER BY count(*) DESC, votable_id) row_number, count(*), max(created_at)
+        SELECT votable_id, row_number() over (ORDER BY count(*) DESC, votable_id) row_number
         FROM votes
         WHERE votable_type = 'Article'
           AND created_at >= :duration_begin
