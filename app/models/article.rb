@@ -32,4 +32,8 @@ class Article < ApplicationRecord
       LIMIT :limit
     SQL
   end
+
+  def self.tag_feed(tag_list)
+    tagged_with(tag_list, any: true)
+  end
 end

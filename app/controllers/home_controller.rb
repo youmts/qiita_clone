@@ -6,6 +6,6 @@ class HomeController < ApplicationController
   end
 
   def tag_feed
-    @pagy, @articles = pagy(Article.top)
+    @pagy, @articles = pagy(Article.tag_feed(current_user.tag_list).order(created_at: :desc))
   end
 end
