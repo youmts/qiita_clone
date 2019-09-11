@@ -41,6 +41,7 @@ RSpec.describe "Articles", :type => :system, js_headless: true do
     }.to change(Article, :count).by(1)
 
     expect(page).to have_current_path article_path(Article.last)
+    expect(Article.last.tag_list).to eq [tag1.name]
   end
 
   it "記事が編集できること" do
